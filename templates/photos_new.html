@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% set page_title = 'New Photo' %}
+
+{% block content %}
+<form style = "position:relative; left:10px" method="post" enctype="multipart/form-data">
+    <div style="width: 500px">
+        <label for="photo" class="form-label">Photo: </label>
+        <input class="form-control form-control-lg" id="photo" name="photo" type="file">
+    </div>
+    <br>
+    <input class='btn btn-success' type="submit" value="Upload">
+</form>
+{% endblock %}

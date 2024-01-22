@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% set page_title = 'Student-Details' %}
+
+{% block content %}
+    <br>
+    <div style="position:relative; left:10px">
+        <a href='/our-students' class="btn btn-primary" role="button">Back to Students</a>
+        <h2 style=color:red>Student details</h2>
+        {% if student.role == 'admin' %}
+            <h4>ID: {{ student.id }}</h4>
+        {% endif %}
+        <h4>Username: {{ student.username }}</h4>
+        <h4>Name: {{ student.full_name }}</h4>
+        <h4>Email: {{ student.email }}</h4>
+    </div>
+
+
+    {% if user.role == 'admin' %}
+
+        <form style="position:relative; left:10px" method="post" action="/user_update">
+            <input type="hidden" name="user_update_id" value="{{ user.id }}">
+            <input type="text" name="new_full_name" placeholder="New Full Name" required>
+            <input type="text" name="new_username" placeholder="New Username" required>
+            <input type="text" name="new_email" placeholder="New Email" required>
+            <button class="btn btn-success" type="submit">Update</button>
+        </form>
+
+        <form style="position:relative; left:10px" method="post" action="delete-user">
+            <input type="hidden" name="user_id" value="{{ user.id }}">
+            <input class="btn btn-danger" type="submit" value="Delete">
+        </form>
+    {% endif %}
+
+{% endblock %}

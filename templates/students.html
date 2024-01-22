@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% set page_title = "Students" %}
+
+{% block content %}
+    <br>
+    {% if user.role == 'admin' %}
+        <a class="btn btn-success" style="position:relative; left:10px" href="/register" class="btn btn-danger" role="button">Register new Student</a>
+    {% endif %}
+    <br>
+
+        <div class="list-group" style = "position:relative; left:10px">
+            {% for student in students %}
+                <li><a href="/students/{{ student.id }}">{{ student.full_name }}</a></li>
+            {% endfor %}
+        </div>
+
+{% endblock %}

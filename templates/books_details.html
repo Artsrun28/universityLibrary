@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% set page_title = 'Books-Details' %}
+
+{% block content %}
+    <br>
+    <div  style="position:relative; left:10px">
+        <a href='/books' class="btn btn-primary" role="button">Back to Books</a>
+        <h2 style= color:red>Book details</h2>
+        {% if user.role == 'admin' %}
+                <h4>ID: {{ book.id }}</h4>
+        {% endif %}
+        <h4>Book name: {{ book.book_name }}</h4>
+        <h4>Author name: {{ book.author_name }}</h4>
+        <h4>Release year: {{ book.release_year }}</h4>
+
+        {% if user.role == 'admin' %}
+            <h4>Book copies: {{ book.book_copy }}</h4>
+        {% endif %}
+
+        {% if user.role != 'admin' %}
+            {% if book.book_copy > 0 %}
+                <h4 style="color:green">Available</h4>
+                <form action="{{ url_for('take_book', book_id=book.id) }}" method="get">
+                    <button class="btn btn-primary" type="submit">Take</button>
+            {% else %}
+                <h4 style="color:red">Not Available</h4>
+            {% endif %}
+        {% endif %}
+    </div>
+
+
+    {% if user.role == 'admin' %}
+
+        <form method="post" action="{{ url_for('add_book_copies', book_id=book.id) }}">
+            <label for="new_book_copies">Number of Copies to Add:</label>
+            <input type="number" name="new_book_copies" required>
+            <button class="btn btn-success" type="submit">Add Copies</button>
+        </form>
+
+        <form style="position:relative; left:10px" method="post" action="/book_update">
+            <input type="hidden" name="book_update_id" value="{{ book.id }}">
+            <input type="text" name="new_book_name" placeholder="New Book Name" required>
+            <input type="text" name="author_name" placeholder="New Author Name" required>
+            <input type="text" name="new_release_year" placeholder="New Release Year" required>
+            <button class="btn btn-success" type="submit">Update</button>
+        </form>
+
+
+        <form style="position:relative; left:10px" method="post" action="/delete-book">
+            <input type="hidden" name="book_id" value="{{ book.id }}">
+            <input class="btn btn-danger" type="submit" value="Delete">
+        </form>
+    {% endif %}
+
+
+{% endblock %}

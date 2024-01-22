@@ -1,0 +1,8 @@
+.menu {
+    background-color: Tomato;
+    display: flex;
+}
+
+.menudiv a:hover {
+    background-color: white;
+}

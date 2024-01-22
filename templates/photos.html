@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% set page_title = 'Photos' %}
+
+{% block content %}
+    <h1 style="position:relative; left:10px; font-family:verdana">Our Library</h1>
+    {% for photo_src in photo_urls %}
+        <img style="width: 350px" src="{{ photo_src }}">
+    {% endfor %}
+    <br><br>
+    {% if user.role == 'admin' %}
+        <a style = "position:relative; left:10px" href="/photos/new" class="btn btn-primary"> Add Photo</a>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,24 @@
+<nav class=menu>
+    <h1 style= "position:relative; left:10px; font-family:verdana">Welcome to University Library</h1>
+
+        <div style="position:relative; left:220px; top:5px" class="d-flex justify-content-end; d-flex align-items-stretch">
+            <a href="/" class="btn btn-warning me-md-2" style="--bs-btn-padding-y: .25em; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Home</a>
+            <a href="/about" class="btn btn-warning me-md-2" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">About Us</a>
+            <a href="/books" class="btn btn-warning me-md-2" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Books</a>
+            <a href="/photos" class="btn btn-warning me-md-2" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Photo</a>
+            {% if user %}
+                <a href="/our-students" class="btn btn-warning me-md-2" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Our Students</a>
+            {% endif %}
+
+            {% if user.role == 'admin' %}
+                <a href="/library-history" class="btn btn-warning me-md-2" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Library History</a>
+            {% endif %}
+
+            {% if not user %}
+                <a href="/login" class="btn btn-warning me-md-2" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Login</a>
+            {% else %}
+                {{ user.full_name }}
+                <a href="/logout" class="btn btn-warning me-md-2" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Logout</a>
+            {% endif %}
+        </div>
+</nav>

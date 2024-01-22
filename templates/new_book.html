@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% from "macros.html" import error_display with context %}
+
+{% set page_title = 'New Book' %}
+
+{% block content %}
+<br>
+<a href='/books' class="btn btn-primary" role="button" style="position:relative; left:10px">Back to Books</a>
+
+<form style = "position:relative; left:10px" method="POST" enctype="multipart/form-data">
+    {{ form.csrf_token }}
+
+    <div class="mb-4" style="width: 400px;">
+        <label for="book_name" class="form-label">Book Name</label>
+        <input type="text"
+               class="form-control"
+               {% if form.book_name.data %}
+                value="{{ form.book_name.data }}"
+               {% endif %}
+               id="book_name"
+               name="book_name"
+               placeholder="Book Name"
+               required
+        >
+        {{ error_display(form.book_name.errors) }}
+    </div>
+
+    <div class="mb-4" style="width: 400px;">
+        <label for="author_name" class="form-label">Author name</label>
+        <input type="text"
+               class="form-control"
+               {% if form.author_name.data %}
+                value="{{ form.author_name.data }}"
+               {% endif %}
+               id="author_name"
+               name="author_name"
+               placeholder="Author name"
+               required
+        >
+        {{ error_display(form.author_name.errors) }}
+    </div>
+
+    <div class="mb-4" style="width: 400px;">
+        <label for="release_year" class="form-label">Release year</label>
+        <input type="text"
+               class="form-control"
+               {% if form.release_year.data %}
+                value="{{ form.release_year.data }}"
+               {% endif %}
+               id="release_year"
+               name="release_year"
+               placeholder="Release year"
+               required
+        >
+        {{ error_display(form.release_year.errors) }}
+    </div>
+
+    <div class="mb-4" style="width: 400px;">
+        <label for="book_copy" class="form-label">Book Copy</label>
+        <input type="text"
+               class="form-control"
+               {% if form.book_copy.data %}
+                value="{{ form.book_copy.data }}"
+               {% endif %}
+               id="book_copy"
+               name="book_copy"
+               placeholder="Book Copy"
+               required
+        >
+        {{ error_display(form.book_copy.errors) }}
+    </div>
+    <input class="btn btn-success" type="submit" value="Add Book">
+</form>
+{% endblock %}

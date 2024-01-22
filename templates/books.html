@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% set page_title = 'Books' %}
+
+{% block content %}
+    <br>
+    {% if user.role == 'admin' %}
+        <a style="position:relative; left:10px" href="/books/new" class="btn btn-success" role="button">Add new Book</a>
+    {% endif %}
+    <br>
+    <br>
+
+    <form method="GET" action="{{ url_for('books') }}" style="position:relative; left:10px; width: 400px;">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" name="query" placeholder="Search by Book or Author Name">
+            <button class="btn btn-outline-secondary" type="submit">Search</button>
+        </div>
+    </form>
+
+    <div class="list-group" style="position:relative; left:10px; max-width: 350px; margin: 0 auto;">
+        {% for book in books %}
+            <div style="border: 1px solid #ccc; padding: 10px; margin-bottom: 10px; border-radius: 5px; background-color: #92a1cf;">
+                <a href='/books/{{ book.id }}'>
+                    <h3>{{ book.book_name }}</h3>
+                    <p>Author: {{ book.author_name }}</p>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}

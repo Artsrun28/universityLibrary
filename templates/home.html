@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% set page_title = 'Home' %}
+
+{% block content %}
+<br><br>
+{% if not user %}
+    <div>
+        <h1 style = "position:relative; left:10px">To take books you need to be our student and Log in</h1>
+        <br><br>
+        <a href="/login" class="d-grid gap-2 col-6 mx-auto">
+            <button class="btn btn-primary btn-lg" type="button">Login</button>
+        </a>
+    </div>
+{% else %}
+    <h1> Under conctruction </h1>
+{% endif %}
+
+{% endblock %}

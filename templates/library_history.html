@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% set page_title = 'Library history' %}
+
+{% block content %}
+
+    <body>
+        <h1>Library history</h1>
+
+        <ul>
+            {% for b in history %}
+                <li>
+                    {{ b.student_name }} wants to borrow a book '{{ b.book_name }}' by {{ b.author_name }} on {{ b.date_taken }}.
+                    Return date: {{ b.return_date }}.
+
+                    <form method="POST" action="{{ url_for('delete_returned_book') }}" style="display: inline;">
+                        <input type="hidden" name="history_id" value="{{ b.id }}">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </li>
+            {% endfor %}
+        </ul>
+    </body>
+
+{% endblock %}

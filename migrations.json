@@ -1,0 +1,10 @@
+{
+  "prerun": "# some code here",
+  "directory": "migrations",
+  "history": "migratehistory",
+  "models": [
+    "models.books.Book",
+    "models.user.User",
+    "models.library_history.LibraryHistory"
+  ]
+}
